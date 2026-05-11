@@ -48,4 +48,4 @@ if [ -z "${HA_TOKEN}" ] && [ -n "${SUPERVISOR_TOKEN:-}" ]; then
   export HA_TOKEN="${SUPERVISOR_TOKEN}"
 fi
 
-exec python -m ha_mcp_self_healer
+exec python /app/server.py

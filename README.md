@@ -19,7 +19,7 @@ python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env
-python -m ha_mcp_self_healer
+python server.py
 ```
 
 ## Add-on Home Assistant

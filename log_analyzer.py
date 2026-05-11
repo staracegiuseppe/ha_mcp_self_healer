@@ -1,7 +1,7 @@
 import hashlib
 import re
 
-from .models import LogIssue
+from models import LogIssue
 
 
 ERROR_START = re.compile(r"^(?P<date>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+) (?P<level>ERROR|WARNING|CRITICAL) \((?P<thread>[^)]+)\) \[(?P<source>[^\]]+)\] (?P<message>.*)$")

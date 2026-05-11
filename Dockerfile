@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY ha_mcp_self_healer ./ha_mcp_self_healer
+COPY *.py ./
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 

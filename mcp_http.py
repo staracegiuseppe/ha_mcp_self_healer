@@ -1,6 +1,6 @@
 from typing import Any
 
-from .agent import SelfHealingAgent
+from agent import SelfHealingAgent
 
 
 TOOLS = [

@@ -1,7 +1,7 @@
 import re
 
-from .config import Settings
-from .models import HealingAction, LogIssue
+from config import Settings
+from models import HealingAction, LogIssue
 
 
 def decide_actions(issue: LogIssue, settings: Settings) -> list[HealingAction]:

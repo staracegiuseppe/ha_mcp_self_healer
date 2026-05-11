@@ -3,7 +3,7 @@ from typing import Any
 
 import requests
 
-from .config import Settings
+from config import Settings
 
 log = logging.getLogger(__name__)
 

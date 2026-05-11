@@ -3,3 +3,4 @@ __pycache__/
 .venv/
 .env
 .self_healer_state.json
+.DS_Store

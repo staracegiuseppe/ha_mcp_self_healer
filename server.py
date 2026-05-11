@@ -4,9 +4,9 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
-from .agent import SelfHealingAgent
-from .config import load_settings
-from .mcp_http import handle_mcp
+from agent import SelfHealingAgent
+from config import load_settings
+from mcp_http import handle_mcp
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
 log = logging.getLogger(__name__)
@@ -85,3 +85,7 @@ def mcp(request: dict) -> dict:
 def run() -> None:
     log.info("Starting HA MCP Self Healer on %s:%s", settings.bind_host, settings.port)
     uvicorn.run(app, host=settings.bind_host, port=settings.port)
+
+
+if __name__ == "__main__":
+    run()

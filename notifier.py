@@ -7,8 +7,8 @@ from email.mime.text import MIMEText
 
 import requests
 
-from .config import Settings
-from .models import HealingReport
+from config import Settings
+from models import HealingReport
 
 log = logging.getLogger(__name__)
 _TOKEN_CACHE = {"access_token": None, "expires_at": 0.0}

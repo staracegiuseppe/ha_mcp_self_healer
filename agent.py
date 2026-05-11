@@ -6,12 +6,12 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from .config import Settings
-from .ha_client import HomeAssistantClient
-from .log_analyzer import parse_error_log
-from .models import ActionResult, HealingAction, HealingReport, LogIssue
-from .notifier import EmailNotifier
-from .playbooks import decide_actions
+from config import Settings
+from ha_client import HomeAssistantClient
+from log_analyzer import parse_error_log
+from models import ActionResult, HealingAction, HealingReport, LogIssue
+from notifier import EmailNotifier
+from playbooks import decide_actions
 
 log = logging.getLogger(__name__)
 STATE_PATH = Path("/data/self_healer_state.json")
