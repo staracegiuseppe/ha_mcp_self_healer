@@ -38,6 +38,9 @@ export SMTP_USER="$(get_opt smtp_user "")"
 export SMTP_PASSWORD="$(get_opt smtp_password "")"
 export EMAIL_FROM="$(get_opt email_from "")"
 export EMAIL_TO="$(get_opt email_to "")"
+export OAUTH2_CLIENT_ID="$(get_opt oauth2_client_id "")"
+export OAUTH2_CLIENT_SECRET="$(get_opt oauth2_client_secret "")"
+export OAUTH2_REFRESH_TOKEN="$(get_opt oauth2_refresh_token "")"
 export BIND_HOST=0.0.0.0
 export PORT=8124
 

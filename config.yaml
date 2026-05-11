@@ -41,6 +41,9 @@ options:
   smtp_password: ""
   email_from: ""
   email_to: ""
+  oauth2_client_id: ""
+  oauth2_client_secret: ""
+  oauth2_refresh_token: ""
 schema:
   ha_url: str
   supervisor_url: str
@@ -64,3 +67,6 @@ schema:
   smtp_password: password
   email_from: str
   email_to: str
+  oauth2_client_id: str
+  oauth2_client_secret: password
+  oauth2_refresh_token: password

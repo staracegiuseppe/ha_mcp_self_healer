@@ -30,7 +30,11 @@ Configura almeno:
 
 - `ha_url`
 - `ha_token` se non gira come add-on con `SUPERVISOR_TOKEN`
-- `smtp_host`, `smtp_user`, `smtp_password`, `email_from`, `email_to`
+- `email_enabled`, `email_from`, `email_to`
+- per Gmail OAuth2: `oauth2_client_id`, `oauth2_client_secret`, `oauth2_refresh_token`
+- come fallback App Password/SMTP: `smtp_host`, `smtp_user`, `smtp_password`
+
+L'invio email segue lo stesso approccio di Market Analyze: prova prima Gmail OAuth2, poi SMTP/App Password.
 
 ## Limiti di sicurezza
 

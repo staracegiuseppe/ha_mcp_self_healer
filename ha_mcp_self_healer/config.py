@@ -36,6 +36,9 @@ class Settings(BaseModel):
     smtp_password: str = ""
     email_from: str = ""
     email_to: str = ""
+    oauth2_client_id: str = ""
+    oauth2_client_secret: str = ""
+    oauth2_refresh_token: str = ""
     bind_host: str = "0.0.0.0"
     port: int = 8124
 
@@ -77,6 +80,9 @@ def load_settings() -> Settings:
         smtp_password=opts.get("smtp_password") or os.getenv("SMTP_PASSWORD", ""),
         email_from=opts.get("email_from") or os.getenv("EMAIL_FROM", ""),
         email_to=opts.get("email_to") or os.getenv("EMAIL_TO", ""),
+        oauth2_client_id=opts.get("oauth2_client_id") or os.getenv("OAUTH2_CLIENT_ID", ""),
+        oauth2_client_secret=opts.get("oauth2_client_secret") or os.getenv("OAUTH2_CLIENT_SECRET", ""),
+        oauth2_refresh_token=opts.get("oauth2_refresh_token") or os.getenv("OAUTH2_REFRESH_TOKEN", ""),
         bind_host=os.getenv("BIND_HOST", "0.0.0.0"),
         port=int(os.getenv("PORT", "8124")),
     )
