@@ -16,6 +16,7 @@ def _bool_env(name: str, default: bool) -> bool:
 
 class Settings(BaseModel):
     ha_url: str = "http://supervisor/core"
+    supervisor_url: str = "http://supervisor"
     ha_token: str = ""
     check_interval_seconds: int = 300
     dry_run: bool = True
@@ -56,6 +57,7 @@ def load_settings() -> Settings:
     token = opts.get("ha_token") or os.getenv("HA_TOKEN") or supervisor_token
     return Settings(
         ha_url=opts.get("ha_url") or os.getenv("HA_URL", "http://supervisor/core"),
+        supervisor_url=opts.get("supervisor_url") or os.getenv("SUPERVISOR_URL", "http://supervisor"),
         ha_token=token,
         check_interval_seconds=int(opts.get("check_interval_seconds") or os.getenv("CHECK_INTERVAL_SECONDS", "300")),
         dry_run=bool(opts.get("dry_run", _bool_env("DRY_RUN", True))),

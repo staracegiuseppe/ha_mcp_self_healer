@@ -19,6 +19,7 @@ except Exception:
 }
 
 export HA_URL="$(get_opt ha_url http://supervisor/core)"
+export SUPERVISOR_URL="$(get_opt supervisor_url http://supervisor)"
 export HA_TOKEN="$(get_opt ha_token "")"
 export CHECK_INTERVAL_SECONDS="$(get_opt check_interval_seconds 300)"
 export DRY_RUN="$(get_opt dry_run true)"

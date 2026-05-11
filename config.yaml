@@ -21,6 +21,7 @@ hassio_api: true
 auth_api: true
 options:
   ha_url: "http://supervisor/core"
+  supervisor_url: "http://supervisor"
   ha_token: ""
   check_interval_seconds: 300
   dry_run: true
@@ -42,6 +43,7 @@ options:
   email_to: ""
 schema:
   ha_url: str
+  supervisor_url: str
   ha_token: str
   check_interval_seconds: int
   dry_run: bool

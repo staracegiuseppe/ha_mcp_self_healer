@@ -12,16 +12,31 @@ class HomeAssistantClient:
     def __init__(self, settings: Settings):
         self.settings = settings
         self.base_url = settings.ha_url.rstrip("/")
+        self.supervisor_url = settings.supervisor_url.rstrip("/")
         self.session = requests.Session()
+        self.supervisor_session = requests.Session()
         if settings.ha_token:
             self.session.headers.update({"Authorization": f"Bearer {settings.ha_token}"})
+            self.supervisor_session.headers.update({"Authorization": f"Bearer {settings.ha_token}"})
         self.session.headers.update({"Content-Type": "application/json"})
+        self.supervisor_session.headers.update({"Content-Type": "application/json"})
 
     def _url(self, path: str) -> str:
         return f"{self.base_url}/{path.lstrip('/')}"
 
+    def _supervisor_api_url(self, path: str) -> str:
+        return f"{self.supervisor_url}/{path.lstrip('/')}"
+
     def get(self, path: str, timeout: int = 20) -> Any:
         response = self.session.get(self._url(path), timeout=timeout)
+        response.raise_for_status()
+        content_type = response.headers.get("content-type", "")
+        if "application/json" in content_type:
+            return response.json()
+        return response.text
+
+    def supervisor_get(self, path: str, timeout: int = 20) -> Any:
+        response = self.supervisor_session.get(self._supervisor_api_url(path), timeout=timeout)
         response.raise_for_status()
         content_type = response.headers.get("content-type", "")
         if "application/json" in content_type:
@@ -43,7 +58,14 @@ class HomeAssistantClient:
         return {"connected": True, "location": config.get("location_name"), "version": config.get("version")}
 
     def error_log(self) -> str:
-        return str(self.get("/api/error_log", timeout=30))
+        try:
+            return str(self.get("/api/error_log", timeout=30))
+        except requests.HTTPError as exc:
+            status = exc.response.status_code if exc.response is not None else None
+            if status != 404:
+                raise
+            log.info("/api/error_log returned 404, falling back to Supervisor /core/logs")
+            return str(self.supervisor_get("/core/logs", timeout=30))
 
     def call_service(self, domain: str, service: str, data: dict[str, Any] | None = None) -> Any:
         return self.post(f"/api/services/{domain}/{service}", data or {})
